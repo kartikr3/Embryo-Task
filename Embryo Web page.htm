@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embryo - Entrepreneurship Cell of BITS Pilani</title>
+    <style>
+        :root {
+            --primary-color: #1a237e;
+            --secondary-color: #283593;
+            --accent-color: #ff6f00;
+            --light-bg: #f5f5f5;
+            --dark-text: #212121;
+            --light-text: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark-text);
+            background-color: var(--light-bg);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+        }
+        
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/api/placeholder/1200/800') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--light-text);
+            padding-top: 80px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--light-text);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #ff8f00;
+        }
+        
+        /* About Section */
+        .section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: -10px;
+            left: 25%;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-img {
+            flex: 1;
+            text-align: center;
+        }
+        
+        .about-img img {
+            max-width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Initiatives Section */
+        .initiatives {
+            background-color: var(--light-bg);
+        }
+        
+        .initiatives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .initiative-card {
+            background-color: var(--light-text);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .initiative-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .initiative-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .initiative-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .initiative-card:hover .initiative-img img {
+            transform: scale(1.1);
+        }
+        
+        .initiative-content {
+            padding: 20px;
+        }
+        
+        .initiative-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary-color);
+        }
+        
+        /* Team Section */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            text-align: center;
+        }
+        
+        .team-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 20px;
+            border: 5px solid var(--light-text);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .team-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-member h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--primary-color);
+        }
+        
+        .team-member p {
+            color: var(--secondary-color);
+        }
+        
+        /* Contact Section */
+        .contact {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+        
+        .contact-content {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        
+        .form-group textarea {
+            height: 150px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 20px 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            color: var(--light-text);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="/api/placeholder/40/40" alt="Embryo Logo"> EMBRYO
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#initiatives">Initiatives</a></li>
+                    <li><a href="#team">Team</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>EMBRYO</h1>
+                <p>The Entrepreneurship Cell of BITS Pilani</p>
+                <p>Fostering Innovation, Entrepreneurship, and Leadership among Students</p>
+                <a href="#about" class="btn">Learn More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Us</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Embryo is the Entrepreneurship Cell of BITS Pilani, dedicated to fostering the spirit of entrepreneurship and innovation among students. We provide a platform for budding entrepreneurs to transform their ideas into successful ventures.</p>
+                    <p>Since our inception, we have been nurturing the entrepreneurial ecosystem at BITS Pilani through various initiatives, workshops, competitions, and mentorship programs. Our goal is to empower students with the knowledge, skills, and resources necessary to pursue their entrepreneurial dreams.</p>
+                    <p>We believe in the power of innovation and creativity to drive positive change in society. Through our activities, we aim to inspire and equip the next generation of entrepreneurs to tackle real-world challenges and create impactful solutions.</p>
+                </div>
+                <div class="about-img">
+                    <img src="/api/placeholder/500/300" alt="Embryo Team">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Initiatives Section -->
+    <section id="initiatives" class="section initiatives">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Initiatives</h2>
+            </div>
+            <div class="initiatives-grid">
+                <div class="initiative-card">
+                    <div class="initiative-img">
+                        <img src="/api/placeholder/400/200" alt="E-Summit">
+                    </div>
+                    <div class="initiative-content">
+                        <h3>E-Summit</h3>
+                        <p>An annual flagship event that brings together entrepreneurs, investors, and industry leaders to share insights and experiences. It features keynote speeches, panel discussions, workshops, and networking opportunities.</p>
+                    </div>
+                </div>
+                <div class="initiative-card">
+                    <div class="initiative-img">
+                        <img src="/api/placeholder/400/200" alt="Startup Weekend">
+                    </div>
+                    <div class="initiative-content">
+                        <h3>Startup Weekend</h3>
+                        <p>A 54-hour event where participants form teams, validate ideas, and build prototypes. It provides a hands-on experience of the startup journey, from ideation to execution.</p>
+                    </div>
+                </div>
+                <div class="initiative-card">
+                    <div class="initiative-img">
+                        <img src="/api/placeholder/400/200" alt="Incubation Program">
+                    </div>
+                    <div class="initiative-content">
+                        <h3>Incubation Program</h3>
+                        <p>A structured program that provides mentorship, resources, and support to student startups. It helps them develop their ideas, refine their business models, and prepare for market entry.</p>
+                    </div>
+                </div>
+                <div class="initiative-card">
+                    <div class="initiative-img">
+                        <img src="/api/placeholder/400/200" alt="Workshops">
+                    </div>
+                    <div class="initiative-content">
+                        <h3>Workshops & Seminars</h3>
+                        <p>Regular sessions on various aspects of entrepreneurship, including business planning, marketing, fundraising, and legal considerations. These sessions are conducted by industry experts and successful entrepreneurs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="section">
+        <div class="container">
+        <div class="section-title">
+                <h2>Professor In-charge</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="/api/placeholder/150/150" alt="Team Member 1">
+                    </div>
+                    <h3>Dr. Rishikesh Vaidya</h3>
+                
+            <div class="section-title">
+                <h2>Our Team</h2>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="/api/placeholder/150/150" alt="Team Member 1">
+                    </div>
+                    <h3>Nishit Soni</h3>
+                    <p>President</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="/api/placeholder/150/150" alt="Team Member 2">
+                    </div>
+                    <h3>Jainam Hemani</h3>
+                    <p>Secratary</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="/api/placeholder/150/150" alt="Team Member 3">
+                    </div>
+                    <h3>Tanishq Thorat/h3>
+                    <p>APOGEE Coordinator</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="/api/placeholder/150/150" alt="Team Member 3">
+                    </div>
+                    <h3>Tanishq Thorat/h3>
+                    <p>APOGEE Coordinator</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="/api/placeholder/150/150" alt="Team Member 3">
+                    </div>
+                    <h3>Anish Hatua/h3>
+                    <p>OASIS Coordinator</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="/api/placeholder/150/150" alt="Team Member 3">
+                    </div>
+                    <h3>Sachik Lala/h3>
+                    <p>BOSM Coordinator</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="/api/placeholder/150/150" alt="Team Member 3">
+                    </div>
+                    <h3>Maitrey Patel/h3>
+                    <p>Outreach Team Lead</p>
+                    <p>APOGEE Joint=Coordinator</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="/api/placeholder/150/150" alt="Team Member 3">
+                    </div>
+                    <h3>Shubham Nahata/h3>
+                    <p>Operations Team Lead</p>
+                    <p>OASIS Joint-Coordinator</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="/api/placeholder/150/150" alt="Team Member 3">
+                    </div>
+                    <h3>Saksham Sandhu/h3>
+                    <p>Editorial Team Lead</p>
+                    <p>BOSM Joint-Coordinator</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-img">
+                        <img src="/api/placeholder/
